@@ -26,10 +26,8 @@ public class BookStoreApplication {
             book.setAuthor("Lev Tolstoy");
             book.setIsbn("123456");
             book.setPrice(BigDecimal.valueOf(350));
-
             bookService.save(book);
             System.out.println(bookService.findAll());
         };
     }
-
 }
