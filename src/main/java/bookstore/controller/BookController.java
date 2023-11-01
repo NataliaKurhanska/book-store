@@ -1,6 +1,7 @@
 package bookstore.controller;
 
 import bookstore.dto.BookDto;
+import bookstore.dto.BookSearchParameters;
 import bookstore.dto.CreateBookRequestDto;
 import bookstore.service.BookService;
 import java.util.List;
@@ -28,6 +29,12 @@ public class BookController {
     @GetMapping("/{id}")
     public BookDto getBookById(@PathVariable Long id) {
         return bookService.getBookById(id);
+    }
+
+    @GetMapping("/search")
+    public List<BookDto> searchBooks(BookSearchParameters searchParameters) {
+        BookSearchParameters params = searchParameters;
+        return bookService.search(searchParameters);
     }
 
     @PostMapping
