@@ -28,10 +28,6 @@ public class BookSpecificationBuilder implements SpecificationBuilder<Book> {
             sp = sp.and(providerManager.getSpecificationProvider("isbn")
                     .getSpecification(searchParameters.isbn()));
         }
-        if (searchParameters.prices() != null && searchParameters.prices().length > 0) {
-            sp = sp.and(providerManager.getSpecificationProvider("price")
-                    .getSpecification(searchParameters.prices()));
-        }
         return sp;
     }
 }

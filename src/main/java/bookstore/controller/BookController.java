@@ -33,7 +33,6 @@ public class BookController {
 
     @GetMapping("/search")
     public List<BookDto> searchBooks(BookSearchParameters searchParameters) {
-        BookSearchParameters params = searchParameters;
         return bookService.search(searchParameters);
     }
 
