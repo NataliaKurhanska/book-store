@@ -20,7 +20,7 @@ public class TitleSpecificationProvider implements SpecificationProvider<Book> {
     public Specification<Book> getSpecification(String[] params) {
         return ((root, query, criteriaBuilder) -> {
             Predicate predicate = criteriaBuilder.disjunction();
-            for (String value : params) {
+            for (String value: params) {
                 predicate = criteriaBuilder.or(predicate,
                         criteriaBuilder.like(root.get(FIELD_NAME), "%" + value + "%"));
             }
