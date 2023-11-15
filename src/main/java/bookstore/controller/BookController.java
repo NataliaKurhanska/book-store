@@ -44,8 +44,9 @@ public class BookController {
     @GetMapping("/search")
     @Operation(summary = "Get books by parameters",
             description = "Get a list of all available books by parameters")
-    public List<BookDto> searchBooks(BookSearchParameters searchParameters) {
-        return bookService.search(searchParameters);
+    public List<BookDto> searchBooks(BookSearchParameters searchParameters,
+                                     @PageableDefault(size = 20, sort = {"id"}) Pageable pageable) {
+        return bookService.search(searchParameters, pageable);
     }
 
     @PostMapping
