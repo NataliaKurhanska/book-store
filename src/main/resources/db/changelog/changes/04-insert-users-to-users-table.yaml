@@ -1,0 +1,31 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-users
+      author: nk
+      changes:
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  { name: email, value: "admin@example.com" }
+              - column:
+                  { name: password, value: "123456" }
+              - column:
+                  { name: first_name, value: "Bob" }
+              - column:
+                  { name: last_name, value: "Doe" }
+              - column:
+                  { name: shipping_address, value: "123 Main St, City, Country" }
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  { name: email, value: "jack@example.com" }
+              - column:
+                  { name: password, value: "123456" }
+              - column:
+                  { name: first_name, value: "Jack" }
+              - column:
+                  { name: last_name, value: "Doe" }
+              - column:
+                  { name: shipping_address, value: "123 Main St, City, Country" }
