@@ -49,7 +49,7 @@ public class User implements UserDetails {
         return roles.stream()
                 .map(r -> r.getName().name())
                 .map(r -> r.startsWith("ROLE_") ? r : "ROLE_" + r)
-                .map(r -> new SimpleGrantedAuthority(r))
+                .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toSet());
     }
 
