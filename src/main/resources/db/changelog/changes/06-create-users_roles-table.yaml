@@ -1,0 +1,27 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-users_roles-table
+      author: nk
+      changes:
+        - createTable:
+            tableName: users_roles
+            remarks: A join table between users and roles
+            columns:
+              - column:
+                  name: user_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_user_id
+                    references: users(id)
+              - column:
+                  name: role_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_role_id
+                    references: roles(id)
+        - addPrimaryKey:
+            tableName: users_roles
+            constraintName: pk_users_roles
+            columnNames: user_id, role_id
