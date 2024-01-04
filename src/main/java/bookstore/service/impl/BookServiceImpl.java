@@ -1,8 +1,9 @@
 package bookstore.service.impl;
 
-import bookstore.dto.BookDto;
-import bookstore.dto.BookSearchParameters;
-import bookstore.dto.CreateBookRequestDto;
+import bookstore.dto.book.BookDto;
+import bookstore.dto.book.BookDtoWithoutCategoryIds;
+import bookstore.dto.book.BookSearchParameters;
+import bookstore.dto.book.CreateBookRequestDto;
 import bookstore.exception.EntityNotFoundException;
 import bookstore.mapper.BookMapper;
 import bookstore.model.Book;
@@ -64,6 +65,14 @@ public class BookServiceImpl implements BookService {
         Specification<Book> build = specificationBuilder.build(bookSearchParameters);
         return bookRepository.findAll(build, pageable).stream()
                 .map(bookMapper::toDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<BookDtoWithoutCategoryIds> getBooksByCategoryId(Long categoryId,
+                                                                Pageable pageable) {
+        return bookRepository.findAllByCategoryId(categoryId, pageable).stream()
+                .map(bookMapper::toDtoWithoutCategories)
                 .collect(Collectors.toList());
     }
 }
