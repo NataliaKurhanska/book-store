@@ -1,7 +1,7 @@
 package bookstore.service.impl;
 
-import bookstore.dto.UserRegistrationRequestDto;
-import bookstore.dto.UserResponseDto;
+import bookstore.dto.user.UserRegistrationRequestDto;
+import bookstore.dto.user.UserResponseDto;
 import bookstore.exception.RegistrationException;
 import bookstore.mapper.UserMapper;
 import bookstore.model.Role;

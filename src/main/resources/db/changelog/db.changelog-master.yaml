@@ -17,3 +17,7 @@ databaseChangeLog:
       file: classpath:/db/changelog/changes/08-add-roles-to-existed-users.yaml
   - include:
       file: classpath:/db/changelog/changes/09-update-users-password.yaml
+  - include:
+      file: classpath:/db/changelog/changes/10-create-categories-table.yaml
+  - include:
+      file: classpath:/db/changelog/changes/11-create-books_categories-table.yaml

@@ -1,4 +1,4 @@
-package bookstore.dto;
+package bookstore.dto.user;
 
 import bookstore.validation.Password;
 import jakarta.validation.constraints.Email;

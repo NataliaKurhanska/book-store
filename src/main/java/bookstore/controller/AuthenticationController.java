@@ -1,9 +1,9 @@
 package bookstore.controller;
 
-import bookstore.dto.UserLoginRequestDto;
-import bookstore.dto.UserLoginResponseDto;
-import bookstore.dto.UserRegistrationRequestDto;
-import bookstore.dto.UserResponseDto;
+import bookstore.dto.user.UserLoginRequestDto;
+import bookstore.dto.user.UserLoginResponseDto;
+import bookstore.dto.user.UserRegistrationRequestDto;
+import bookstore.dto.user.UserResponseDto;
 import bookstore.security.AuthenticationService;
 import bookstore.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
