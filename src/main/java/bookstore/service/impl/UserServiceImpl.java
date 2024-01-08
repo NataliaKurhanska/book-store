@@ -8,6 +8,7 @@ import bookstore.model.Role;
 import bookstore.model.User;
 import bookstore.repository.UserRepository;
 import bookstore.service.RoleService;
+import bookstore.service.ShoppingCartService;
 import bookstore.service.UserService;
 import java.util.Set;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
+    private final ShoppingCartService shoppingCartService;
     private final RoleService roleService;
     private final UserMapper userMapper;
     private final PasswordEncoder passwordEncoder;
@@ -30,6 +32,8 @@ public class UserServiceImpl implements UserService {
         User user = userMapper.toModel(request);
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setRoles(Set.of(roleService.getByName(Role.RoleName.USER)));
-        return userMapper.toDto(userRepository.save(user));
+        User savedUser = userRepository.save(user);
+        shoppingCartService.registerNewShoppingCart(savedUser);
+        return userMapper.toDto(savedUser);
     }
 }
