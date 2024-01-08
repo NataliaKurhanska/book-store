@@ -13,6 +13,7 @@ import java.math.BigDecimal;
 import java.util.Set;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
@@ -20,6 +21,7 @@ import org.hibernate.annotations.Where;
 @Data
 @Entity
 @Table(name = "books")
+@NoArgsConstructor
 @SQLDelete(sql = "UPDATE books SET is_deleted = true WHERE id=?")
 @Where(clause = "is_deleted = false")
 public class Book {
@@ -46,4 +48,8 @@ public class Book {
             joinColumns = @JoinColumn(name = "book_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> categories;
+
+    public Book(Long id) {
+        this.id = id;
+    }
 }
