@@ -6,7 +6,7 @@ import bookstore.dto.cart.ShoppingCartDto;
 import bookstore.model.User;
 
 public interface ShoppingCartService {
-    void registerNewShoppingCart(User user);
+    void registerNewShoppingCart(Long userId);
 
     ShoppingCartDto getByUser(User user);
 
