@@ -42,8 +42,8 @@ public class Order {
     private BigDecimal total;
     @Column(name = "order_date", nullable = false)
     private LocalDateTime orderDate;
-    @Column(name = "shipping_adress", nullable = false)
-    private String shippingAdress;
+    @Column(name = "shipping_address", nullable = false)
+    private String shippingAddress;
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private Set<OrderItem> orderItems;
     @Column(name = "is_deleted", nullable = false)

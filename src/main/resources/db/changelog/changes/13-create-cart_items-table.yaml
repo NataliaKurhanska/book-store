@@ -26,6 +26,7 @@ databaseChangeLog:
                   type: bigint
                   constraints:
                     nullable: false
+                    unique: true
                     references: books(id)
                     foreignKeyName: fk_cart_items_book_id
               - column:

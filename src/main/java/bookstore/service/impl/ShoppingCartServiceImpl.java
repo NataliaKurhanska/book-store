@@ -37,14 +37,14 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     }
 
     @Override
-    public void addItemToCart(User user, CreateCartItemRequestDto requestDto) {
+    public CartItemDto addItemToCart(User user, CreateCartItemRequestDto requestDto) {
         if (bookRepository.findBookById(requestDto.getBookId()).isEmpty()) {
             throw new EntityNotFoundException("Can't find book with id " + requestDto.getBookId());
         }
         CartItem cartItem = cartItemMapper.toModel(requestDto);
         ShoppingCart shoppingCart = getShoppingCart(user);
         cartItem.setShoppingCart(shoppingCart);
-        cartItemRepository.save(cartItem);
+        return cartItemMapper.toDto(cartItemRepository.save(cartItem));
     }
 
     @Override
@@ -62,12 +62,13 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     }
 
     @Override
-    public void deleteItemFromCart(User user, Long cartItemId) {
+    public ShoppingCartDto deleteItemFromCart(User user, Long cartItemId) {
         ShoppingCart shoppingCart = getShoppingCart(user);
         CartItem cartItem = cartItemRepository.findById(cartItemId).orElseThrow(() ->
                 new EntityNotFoundException("Can't find cart item by id " + cartItemId));
         shoppingCart.getCartItems().remove(cartItem);
         cartItemRepository.deleteById(cartItemId);
+        return shoppingCartMapper.toDto(shoppingCart);
     }
 
     private ShoppingCart getShoppingCart(User user) {
