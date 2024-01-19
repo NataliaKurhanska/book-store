@@ -1,5 +1,6 @@
 package bookstore.exception;
 
+import jakarta.validation.ConstraintViolationException;
 import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -51,5 +52,10 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
     @ExceptionHandler(RegistrationException.class)
     public ResponseEntity<Object> handleRegistrationException(RegistrationException ex) {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
+    }
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    public ResponseEntity<Object> handlerValidationException(ConstraintViolationException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
     }
 }

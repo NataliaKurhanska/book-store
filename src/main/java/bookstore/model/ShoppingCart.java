@@ -3,7 +3,6 @@ package bookstore.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
 import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
@@ -23,11 +22,8 @@ public class ShoppingCart {
     @OneToOne
     @JoinColumn(name = "id", nullable = false)
     private User user;
-    @OneToMany
+    @OneToMany(mappedBy = "shoppingCart", orphanRemoval = true)
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    @JoinTable(name = "shopping_carts_cart_items",
-            joinColumns = @JoinColumn(name = "shopping_cart_id"),
-            inverseJoinColumns = @JoinColumn(name = "cart_item_id"))
     private Set<CartItem> cartItems;
 }
